@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <span id="order">1</span>번째 참가자
+    </div>
+    <div>제시어 : <span id="word"></span></div>
+    <input type="text" name="" id="">
+    <button>입력</button>
+</body>
+<script>
+    // 사용자에게 입력을 받을 때
+    const number = parseInt(prompt("몇 명이 참가하나요?"));
+
+    /*
+    // 사용자에게 경고
+    alert(number)
+
+    // 사용자의 확인을 요구
+    const yesOrNo = confirm("맞나요?")
+    let a = '12312312';
+    var strNum = "2016년도";
+    console.log("parseInt : " + parseInt(strNum));
+    console.log("Number : " + Number(strNum));
+    */
+    let newWord;
+    let word;
+    const $button = document.querySelector('button');
+    const $word = document.querySelector('#word');
+    const $input = document.querySelector('input');
+    const $order = document.querySelector("#order");
+    const addWord = (event) => {
+        console.log(event.target.value)
+    }
+
+    const onClick = () => {
+        console.log('버튼 클릭')
+    }
+    const onInput = (event) => {
+        newWord = event.target.value
+    }
+    // 제시어 유무
+    const onClickButton = (event) => {
+        if (!word || word[word.length - 1] === newWord[0] ) {
+            // 비어있다
+            word = newWord;
+            $word.textContent = word;
+            const order = parseInt($order.textContent);
+            if (order + 1 > number) {
+                $order.textContent = 1;
+            } else {
+                $order.textContent = order + 1;
+            }
+        } else {
+                alert('올바르지 않은 단어입니다!')
+        }
+        $input.value = '';
+        $input.focus();
+            // word = newWord;
+
+    }
+
+    document.querySelector('button').addEventListener('click', onClickButton);
+    document.querySelector('input').addEventListener('input', onInput);
+
+</script>
+
+</html>
