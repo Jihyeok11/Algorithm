@@ -1,0 +1,5 @@
+4
+abcba
+aba*c***ab*a**
+hi
+*abcd

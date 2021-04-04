@@ -1,0 +1,19 @@
+2
+9 a
+11 b
+[
+    10 b
+    2 a
+]
+6
+21 Junky
+21 Dohyun
+20 Sunyoung
+23 Ssobal
+21 Dohyun
+20 Sunyoung
+[
+    20 Sunyoung
+    21 Junkyu
+    21 Dohyun
+]
