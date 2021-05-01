@@ -50,5 +50,7 @@ def main():
                 graph[line[0]-1].append((line[j]-1,line[j+1]))
                 graph[line[j]-1].append((line[0]-1,line[j+1]))
     print(solution(graph,V))
+    print()
+    
 
 main()
