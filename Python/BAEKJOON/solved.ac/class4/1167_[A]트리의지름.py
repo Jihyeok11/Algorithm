@@ -1,56 +1,38 @@
 import sys
 sys.stdin = open("1167in.txt",'r')
 
-import sys
+def get_farthest(i):
+    farthest, dist = 0, 0    
+    visit = [False] * (v+1)
+    visit[i] = True
+    stack = ba[i][:]
 
-def solution(graph,V):
-    stack = list()
-    visitied = set()
-    stack.append((0,0))
-    visitied.add(0)
-    maxlen = 0
-    maxnode=0
-    while stack:
-        node, dist = stack.pop()
-        if dist > maxlen:
-            maxlen = dist
-            maxnode = node
-        for nodedist in graph[node]:
-            if nodedist[0] not in visitied:
-                stack.append((nodedist[0],dist+nodedist[1]))
-                visitied.add(nodedist[0])
-    stack = list()
-    visitied = set()
-    stack.append((maxnode,0))
-    visitied.add(maxnode)
-    maxlen = 0
-    while stack:
-        node, dist = stack.pop()
-        if dist > maxlen:
-            maxlen = dist
-            maxnode = node
-        for nodedist in graph[node]:
-            if nodedist[0] not in visitied:
-                stack.append((nodedist[0],dist+nodedist[1]))
-                visitied.add(nodedist[0])
-
-    return maxlen
-def main():
-    V = int(sys.stdin.readline())
-    graph=dict()
-    for i in range(V):
-        graph.setdefault(i,list())
-    for i in range(V):
-        line = list(map(int,sys.stdin.readline().split()))
-        for j in range(1,len(line),2):
-            
-            if line[j] == -1:
-                break
-            else:
-                graph[line[0]-1].append((line[j]-1,line[j+1]))
-                graph[line[j]-1].append((line[0]-1,line[j+1]))
-    print(solution(graph,V))
-    print()
+    for s in stack:
+        visit[s[0]] = True
+        if s[1] > dist:
+            farthest = s[0]
+            dist = s[1]
     
-
-main()
+    while stack:
+        bridge, now = stack.pop()
+        for b in ba[bridge]:
+            if not visit[b[0]]:
+                visit[b[0]] = True
+                new = now + b[1]
+                stack.append((b[0], new))
+                if new > dist:
+                    farthest = b[0]
+                    dist = new
+ 
+    return farthest, dist
+            
+v = int(sys.stdin.readline())
+ba = {}
+for _ in range(v):
+    data = list(map(int, sys.stdin.readline().split()))
+    ba[data[0]] = []
+    for i in range(1, len(data)-1, 2):
+        ba[data[0]].append((data[i], data[i+1]))
+ 
+farthest, dist = get_farthest(1)
+sys.stdout.write(str(get_farthest(farthest)[1]))
