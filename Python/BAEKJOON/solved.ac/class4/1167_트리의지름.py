@@ -10,7 +10,7 @@ def longest(i):
     for a in ba[i]:
         li.append(a)
         vi[a[0]] = a[1]
-    li = sorted(li, key=lambda x:x[1])
+    li.sort()
     while li:
         idx,dist = li.pop(0) # 3,2
         s.append(idx)
@@ -22,6 +22,9 @@ def longest(i):
                     li.sort()
     max_dist = max(vi[1:])
     max_idx = vi.index(max_dist)
+    print(max_dist,max_idx)
+    print(vi)
+
     return max_idx,max_dist
 
 ba = {}

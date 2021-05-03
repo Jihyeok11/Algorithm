@@ -3,12 +3,12 @@ sys.stdin = open("1167in.txt",'r')
 
 def get_farthest(i):
     farthest, dist = 0, 0    
-    visit = [False] * (v+1)
-    visit[i] = True
+    visit = [True] * (v+1)
+    visit[i] = False
     stack = ba[i][:]
-
+    
     for s in stack:
-        visit[s[0]] = True
+        visit[s[0]] = False
         if s[1] > dist:
             farthest = s[0]
             dist = s[1]
@@ -16,8 +16,8 @@ def get_farthest(i):
     while stack:
         bridge, now = stack.pop()
         for b in ba[bridge]:
-            if not visit[b[0]]:
-                visit[b[0]] = True
+            if visit[b[0]]:
+                visit[b[0]] = False
                 new = now + b[1]
                 stack.append((b[0], new))
                 if new > dist:
