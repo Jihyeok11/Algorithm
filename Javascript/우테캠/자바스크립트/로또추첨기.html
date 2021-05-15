@@ -1,1 +1,92 @@
-!
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .ball {
+        display: inline-block;
+        border: 1px solid black;
+        border-radius: 20px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 20px;
+        text-align: center;
+        margin-right: 20px;
+    }
+</style>
+
+<body>
+    <h1>로또추첨기</h1>
+    <div id="result">추첨 결과는?</div>
+    <div id="bonus">보너스 :</div>
+</body>
+<script>
+    const array = [1, 2, 3, 4];
+    const candidate = Array(45).fill().map((v, i) => i + 1);
+    const shuffle = [];
+    for (let i = 0; i < 7; i++) {
+        const random = Math.floor(Math.random() * candidate.length);
+        const spliceArray = candidate.splice(random, 1);
+        shuffle.push(spliceArray[0]);
+    };
+
+    const showBall = (number, $parent) => {
+        const $ball = document.createElement('div');
+        $ball.className = 'ball';
+        $ball.textContent = number;
+        colorize(number,$ball);
+        $parent.appendChild($ball);
+    }
+
+    // shuffle.sort((a,b)=> {
+    //   if (a>b) return 1;
+    //   if (a<b) return -1;
+    // })
+
+    const winBalls = shuffle.sort((a, b) => a - b);
+
+    const $result = document.querySelector("#result");
+    for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+            showBall(winBalls[i],$result )
+        }, 1000*i);
+    }
+    
+    // let을 var로 사용하고 싶다면
+    // for (var i = 0; i < 6; i++) {
+    //     (function (j) {
+    //         setTimeout(() => {
+    //             showBall(winBalls[j], $result)
+    //         }, 1000 * j);
+    //     })(i);
+    // }
+    setTimeout(() => {
+        showBall(winBalls[6], document.querySelector('#bonus'))
+    }, 6000);
+
+
+    function colorize(number, $tag) {
+        if (number<10){
+            $tag.style.backgroundColor = 'red';
+            $tag.style.color = 'white';
+        }else if (number < 20) {
+            $tag.style.backgroundColor = 'orange';
+        }else if (number < 30) {
+            $tag.style.backgroundColor = 'yellow';
+        }else if (number < 40) {
+            $tag.style.backgroundColor = 'blue';
+            $tag.style.color = 'white';
+        }else{
+            $tag.style.backgroundColor = 'green';
+            $tag.style.color = 'white';
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>숫자야구</h1>
+    <form action="" id="form">
+        <input type="text" id="input" pattern="[1-9]{4}">
+        <button>확인</button>
+    </form>
+    <div id="logs"></div>
+
+</body>
+<script>
+    const $input = document.querySelector('#input');
+    const $form = document.querySelector('#form');
+    const $logs = document.querySelector('#logs');
+    const tries = [];
+    function checkInput(input) {
+        if (input.length !== 4) {
+            return alert('4자리 숫자를 입력해주세요');
+        }
+        if (new Set(input).size !== 4) {
+            return alert('중복되지 않게 입력해주세요');
+        }
+        if (tries.includes(input)) {
+            return alert('이미 시도한 값입니다.');
+        }
+        return true;
+    }
+
+    const numbers = [];
+    for (let i = 1; i < 10; i++) {
+        numbers.push(i)
+    }
+    const answer = []
+    for (let i = 0; i < 4; i++) {
+        const idx = Math.floor(Math.random() * (numbers.length));
+        answer.push(numbers[idx])
+        numbers.splice(idx, 1)
+    }
+
+    $form.addEventListener("submit", (event) => {
+        event.preventDefault(); // 기본 동작(form의 기본동작은 새로고침와 비슷한 작업)을 못하게 한다
+        const value = $input.value;
+        $input.value = '';
+        if (!checkInput(value)) {
+            console.log("함수 에러있음")
+            return;
+        }
+        if (answer.join('') === value) {
+            $logs.append(`홈런!`);
+            return;
+        }if (tries.length>=9){
+            const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
+            $logs.appendChild(message);
+            return;
+        }
+        // 볼, 스트라이크 계산
+        let strike = 0;
+        let ball = 0;
+        for (let i = 0;i<answer.length;i++){
+            const index = value.indexOf(answer[i]);
+            if (index > -1) { // 일치하는 숫자 발견 시
+                if (index === i){
+                    strike += 1;
+                } else {
+                    ball += 1;
+                }
+            }
+        }
+        if (!ball && !strike){
+            $logs.append(`${value} : 아웃!`,document.createElement('br'));
+            return
+        }
+        $logs.append(`${value} : ${strike} 스트라이크 ${ball}볼`, document.createElement('br'));
+        tries.push(value);
+    })
+</script>
+
+</html>

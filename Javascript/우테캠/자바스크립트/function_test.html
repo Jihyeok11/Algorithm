@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,17 +8,17 @@
     <title>Document</title>
 </head>
 <script>
-    function a(){
+    function a() {
         console.log("hello")
         console.log("hi")
         // return 값이 없을 때 반환값은 undifined 이다
         return "hello";
     }
-    const b = function(parameter) {
+    const b = function (parameter) {
         console.log(parameter)
     }
-    const c = (x,y) => {
-        return x+y;
+    const c = (x, y) => {
+        return x + y;
     }
     const d = {
         name: '하이',
@@ -27,8 +28,15 @@
     d.a = "really";
     console.log(d)
     a();
+
+    Array(9).fill(0).map((el, idx) => {
+        return idx;
+    })
+// (9) [0, 1, 2, 3, 4, 5, 6, 7, 8]
 </script>
+
 <body>
-    
+
 </body>
+
 </html>
