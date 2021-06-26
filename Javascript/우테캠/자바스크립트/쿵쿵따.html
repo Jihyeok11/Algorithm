@@ -42,7 +42,7 @@
                 $order.textContent = 1
             }
         } else{
-            if (!keyWord){
+            if (!keyWord){1
                 alert("세 글자를 입력해주세요")
             }else{
                 alert("제시어를 잘 보고 세 글자를 입력해주세요")
@@ -50,6 +50,7 @@
         }
 
     }
+    $button = document.querySelector("button");
     document.querySelector("button").addEventListener("click", clickButton);
     document.querySelector("input").addEventListener("input", inputWord);
 
