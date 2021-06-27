@@ -1,15 +1,13 @@
 import sys
-sys.stdin = open('1158in.txt','r')
+sys.stdin = open("1158in.txt",'r')
 
-n,m = map(int,sys.stdin.readline().split())
-answer="<"
-vi = list(True for _ in range(n))
-cnt = m-1
-while any(vi):
-    if vi[cnt%n]:
-        vi[cnt%n] = False
-        answer += str(cnt%n+1)
-        cnt += m
-    else:
-        cnt += 1
-print(answer)
+n,m = map(int,input().split())
+li = list(range(n))
+answer = []
+loc = 0
+for _ in range(n):
+    loc += m-1
+    if loc >= len(li):
+        loc %= len(li)
+    answer.append(li.pop(loc)+1)
+print("<" + ", ".join(map(str, answer)) + ">")
