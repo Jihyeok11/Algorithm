@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="asdf.js">
 
-    </script>
     <title>Document</title>
 </head>
 <body>
@@ -23,6 +21,29 @@
     <title>Document</title>
 </head>
 <body>
-    <script type="text/javascript" src="test3.js" ></script>
+    <script type="text/javascript" src="es5.js" ></script>
+
+    <script>
+        const log = console.log;
+        const list = [1,2,3];
+        log(list)
+        for (var i = 0; i < list.length; i++) {
+            log(list[i]);
+        }
+
+        const str = 'abc';
+        for (var i = 0; i < str.length; i++) {
+            log(str[i]);
+        }
+
+        // ES6 
+        for (const a of list) {
+            log(a);
+        }
+
+        for (const b of str) {
+            log(b)
+        } 
+    </script>
 </body>
 </html>

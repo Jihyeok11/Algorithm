@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const log = console.log;
+    log('Arr ------------------------------')
+    const arr = [1,2,3];
+    for (const a of arr) log(a);
+    /*
+    arr은 현재 iterable 하다 이를 강제로 없애보자
+    arr[Symbol.iterator] = null
+    for (const a of arr) log(a); 이를 실시하면 iterable 하지 않다고 나온다.
+    */
+    log('Set -----------------------------')
+    const set = new Set([1, 2, 3]);
+    for (const a of set) log(a);
+    // set은 log(set[0])같은 경우가 안된다.
+
+    log ('Map ----------------------------')
+    const map = new Map([['a', 1], ['b', 2], ['c', 3]]);
+    for (const a of map) log(a);
+</script>
+  
+## 이터러블 / 이터레이터 프로토콜<br>
+- 이터러블 : 이터레이터를 리턴하는 [Symobl.iterator]()를 가진 값<br>
+    (arr[Symbol.iterator], set[Symbol.iterator], map[Symbol.iterator])<br>
+- 이터레이터 : { value, done } 객체를 리턴하는 next()를 가진 값<br>
+    ( 
+        let iterator = arr[Symbol.iterator]이라 할 때, interator.next()를 해보면
+        {value: 1, done: false} 와같은 결과가 나온다.
+    )
+- 이터러블 / 이터레이터 프로토콜 : 이터러블을 for...of, 전개 연산자 등과 함께 동작하도록 한 규약<br>
+
+## 사용자 정의 이터러블을 통해 알아보기
+
+<script>
+    log('arr[Symbol.iterator]');
+    let iter1 = arr[Symbol.iterator]();
+    for (const a of iter1) log(a);
+
+    log('set[Symbol.iterator]');
+    let iter2 = map[Symbol.iterator]();
+    iter2.next();
+    for (const a of iter2) log(a);
+     
+    log('map[Symbol.iterator]');
+    for (const a of map.keys()) log(a);
+    for (const a of map.values()) log(a);
+    for (const a of map.entries()) log(a);
+    console.clear();
+</script>
+
+<!-- 사용자 정의 이터러블 / 이터레이터 -->
+<script>
+    const iterable = {
+        [Symbol.iterator]() {
+            let i = 3;
+            return {
+                next() {
+                    return i == 0 ? {done: true} : { value: i--, done: false}
+                },
+                [Symbol.iterator]() { return this; }
+            }
+        }
+    };
+    let iterator = iterable[Symbol.iterator]();
+    log(iterator.next());
+    // log(iterator.next());
+    // log(iterator.next());
+    // log(iterator.next());
+    // for (const a of iterable) log(a);
+    // 이터러블을 이터레이터로 
+    for (const a of iterator) log(a);
+
+    const arr2 = [1,2,3];
+    let iterator2 = arr2[Symbol.iterator]();
+    iterator2.next();
+    for (const a of iterator2) log(a);
+    // 잘 구현된 이터레이터의 경우 일부 진행을 하였을 때(arr2.next())에도 진행해도 문제없이 된다.
+    // 이를 구현하도록 하자
+    
+
+
+</script>
+</html>

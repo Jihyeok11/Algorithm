@@ -1,0 +1,2 @@
+a = 1819149486
+print( a & 0x0FFFFFFF)
