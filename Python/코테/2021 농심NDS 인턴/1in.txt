@@ -1,0 +1,16 @@
+abcz
+[
+    1
+]
+zazzza
+[
+    3
+]
+zabzczxa
+[
+    3
+]
+abcd
+[
+    0
+]
