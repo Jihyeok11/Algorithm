@@ -1,0 +1,31 @@
+(A+B*C))-(D/E)
+[
+
+]
+[
+    AB+
+]
+A*(B*(C+(D*E)*F))
+[
+    ABCDE*F*+**
+]
+A*B*C*D
+[
+    AB*C*D*
+]
+A+B*C*((D-E)*G)
+[
+    ABC*DE-G**+
+]
+A+B*C+D*E+G
+[
+    ABC*+DE*+G+
+]
+A+(B+C)*D
+[
+    ABC+D*+
+]
+A+B+C+D
+[
+    AB+C+D+
+]

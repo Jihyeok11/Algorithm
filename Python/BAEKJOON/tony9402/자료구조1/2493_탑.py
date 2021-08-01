@@ -7,8 +7,6 @@ li = list(map(int,sys.stdin.readline().strip().split()))
 answer = list(0 for _ in range(n))
 top = deque([(n-1, li[n-1])])
 for i in range(n-2, -1, -1):
-    topFlag = 1
-    lowFlag = 1
     for _ in range(len(top)):
         t = top.popleft()
         if t[1] < li[i]:
