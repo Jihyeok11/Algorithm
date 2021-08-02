@@ -1,6 +1,36 @@
-(A+B*C))-(D/E)
+A-B*C*((D-E)*G)
+[
+    ABC*DE-G**-
+]
+A*(B/C)
+[
+    ABC/*
+]
+(A)
+[
+    A
+]
+A*B/C*D/E 
+[
+    AB*C/D*E/
+]
+()
+
+A+B*C+D+E
 [
 
+]
+A+B*C+D*E+G
+[
+    ABC*+DE*+G+
+]
+A+B+C*D
+[
+    AB+CD*+
+]
+(A+B*C))-(D/E)
+[
+    ABC*+DE/-
 ]
 [
     AB+
@@ -24,8 +54,4 @@ A+B*C+D*E+G
 A+(B+C)*D
 [
     ABC+D*+
-]
-A+B+C+D
-[
-    AB+C+D+
 ]

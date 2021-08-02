@@ -6,7 +6,7 @@ def bracket():
     
     alpha = []
     sachic = []
-    while True:
+    while idx < len(words):
         idx += 1
         if words[idx].isalpha():
             alpha.append(words[idx])
@@ -21,14 +21,17 @@ def bracket():
                 idx += 1
                 alpha.append(alpha.pop() + bracket() + tp)
         elif words[idx] == ")":
-            word = alpha.pop(0)
-            for i in range(len(sachic)):
-                word += alpha[i] + sachic[i]
-            return word
+            if alpha:
+                word = alpha.pop(0)
+                for i in range(len(sachic)):
+                    word += alpha[i] + sachic[i]
+                return word
+            else:
+                return ""
         elif words[idx] == "(":
             alpha.append(bracket())
 
-words = list(x for x in sys.stdin.readline().strip())
+words = list(x for x in input())
 idx = 0
 alpha = []
 sachic = []
@@ -48,7 +51,10 @@ while idx < len(words):
     elif words[idx] == "(":
         alpha.append(bracket())
     idx += 1
-ans = alpha.pop(0)
-for i in range(len(alpha)):
-    ans += alpha[i] + sachic[i]
-print(ans)
+if alpha:
+    ans = alpha.pop(0)
+    for i in range(len(alpha)):
+        ans += alpha[i] + sachic[i]
+    print(ans)
+else:
+    print()
