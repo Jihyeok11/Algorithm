@@ -28,3 +28,4 @@ for x in a:
 while stack:
     res += stack.pop()
 print(res)
+# ABC*DE-G**-
