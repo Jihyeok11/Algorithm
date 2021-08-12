@@ -1,0 +1,24 @@
+XXXXXXXX
+[
+
+]
+XX.XXXXXXXXXX..XXXXXXXX...XXXXXX
+[
+    BB.AAAAAAAABB..AAAAAAAA...AAAABB
+]
+X
+[
+    -1
+]
+XXXX....XXX.....XX
+[
+    -1
+]
+XX.XX
+[
+    BB.BB
+]
+XXXXXX
+[
+    AAAABB
+]

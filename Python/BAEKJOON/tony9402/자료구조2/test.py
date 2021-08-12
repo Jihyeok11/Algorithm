@@ -16,4 +16,6 @@
 # a = bisect_right(nums, n)
 # print(nums[a])
 
-print(round(2/5, 4))
+A = [10,20,30,40,50]
+A.remove(3)
+print(A)
