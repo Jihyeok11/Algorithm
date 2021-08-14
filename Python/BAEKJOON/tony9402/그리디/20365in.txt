@@ -1,0 +1,15 @@
+6
+BRBBRR
+[
+    3
+]
+8
+BBRBRBBR
+[
+    4
+]
+6
+BRRRRB
+[
+    2
+]
