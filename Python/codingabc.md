@@ -41,7 +41,7 @@ https://www.acmicpc.net/problem/1012
 
 
 
-#### 예제 입력
+#### 예제 입력  
 
 ```
 121
@@ -52,7 +52,7 @@ https://www.acmicpc.net/problem/1012
 
 
 
-#### 예제 출력
+#### 예제 출력  
 
 ```
 yes
