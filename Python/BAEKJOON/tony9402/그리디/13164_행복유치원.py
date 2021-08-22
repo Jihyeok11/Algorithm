@@ -1,13 +1,14 @@
-import sys, heapq
+import sys, bisect
 sys.stdin = open("13164in.txt", 'r')
 
 n, k = map(int, sys.stdin.readline().split())
-li = sorted(list(map(int ,sys.stdin.readline().split())), key= lambda x:x)
+li = list(map(int, sys.stdin.readline().split()))
 gaps = []
 ans = 0
 for i in range(n - 1):
-    heapq.heappush(gaps, li[i+1] - li[i])
+    # bisect.insort(gaps, li[i+1] - li[i])
+    gaps.append(li[i+1] - li[i])
+gaps.sort()
 for i in range(n - k):
     ans += gaps[i]
-gaps.sort()
 print(ans)
