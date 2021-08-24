@@ -1,1 +1,1 @@
-print(abs(-1))
+print(int(1.5))
