@@ -40,7 +40,6 @@ https://www.acmicpc.net/problem/1012
 - x, y, w, h는 정수
 
 
-
 #### 예제 입력  
 
 ```
@@ -49,8 +48,6 @@ https://www.acmicpc.net/problem/1012
 12421
 0
 ```
-
-
 
 #### 예제 출력  
 
