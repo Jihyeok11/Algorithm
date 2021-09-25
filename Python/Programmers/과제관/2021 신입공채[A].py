@@ -9,7 +9,7 @@ dc = [0, 0, 1, 0, -1, 0, 0]
 tcommand = {scom[i] : i for i in range(7)}
 
 
-class truck:
+class taxi:
     # p: 트럭의 위치
     # load : 가지고 있는 자전거의 양
     def __init__(self):
@@ -129,8 +129,8 @@ def kakaotaxi(qid = 1):
 
     bycycles = [0 for i in range(msize * msize)]
 
-    tnum = [0, 5, 10]
-    trucks = [truck() for i in range(tnum[qid])]
+    truck_cnt = [0, 5, 10]
+    trucks = [taxi() for i in range(truck_cnt[qid])]
     req = requests.post('/'.join([url, path]), headers = headers, data=json.dumps(param))
     j = req.json()
     auth_key = j['auth_key']
@@ -140,36 +140,42 @@ def kakaotaxi(qid = 1):
     }
 
     next_command = [[] for i in range(len(trucks))]
+    # 초기 자전거
     bnum = [0, 4, 3]
 
+    # 이전 자전거 상태
     prev_bycycle = [bnum[qid] for i in range(msize * msize)]
 
-    for i in range(720):
+    for time in range(720):
+        # 트럭을 랜덤으로 이동시키며, mean보다 많으면 실고 적으면 내린다
         trucksdes = [int(random.uniform(0, msize * msize)) for i in range(len(trucks))]
+
+        # 현재 자전거 상태
         bycycles = getlocation(url, headers, bycycle = bycycles)
         mmin = 100000000
         mini = 0
         mmax = -100000000
         maxi = 0
 
-
         for i, j in enumerate([prev_bycycle[i] - bycycles[i] for i in range(len(bycycles))]):
             if mmin > j:
                 mmin, mini = j, i
             if mmax < j:
                 mmax, maxi = j, i
+        print(mmin, mini, mmax, maxi)
         trucks = gettrucks(url, headers, trucks)
         emergen = [i[0] for i in enumerate(bycycles) if i[1] == 0]
 
         i = 0
-        while i < min(int(mmin / 20), tnum[qid]):
+        # 트럭 하나에 최대 20개 옮길수 있어서
+        while i < min(int(mmin / 20), truck_cnt[qid]):
             trucksdes[i] = mini
             i += 1
-        while i < min(int(mmax / 20), tnum[qid]):
+        while i < min(int(mmax / 20), truck_cnt[qid]):
             trucksdes[i] = maxi
             i += 1
 
-        for i in range(tnum[qid]):
+        for i in range(truck_cnt[qid]):
             t = trucks[i]
             if len(emergen) > 0:
                 trucksdes[i] = emergen.pop()
@@ -177,7 +183,7 @@ def kakaotaxi(qid = 1):
 
         nextcommand = []
 
-        for i in range(tnum[qid]):
+        for i in range(truck_cnt[qid]):
             t = trucks[i]
             ncom = truckmove(t, bycycles, pos, mymap, mean, next_command[i], -1, 'not')
             nextcommand.append({'truck_id': i, 'command' :ncom})
@@ -185,6 +191,8 @@ def kakaotaxi(qid = 1):
         j = simulate(url, header = headers, data = json.dumps({'commands':nextcommand}))
         print(j['time'])
         prev_bycycle = [i for i in bycycles]
+        if time == 10:
+            break
 
     req = requests.get(url + '/score', headers = headers)
     print(req.json()['score'])
