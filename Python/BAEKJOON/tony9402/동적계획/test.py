@@ -1,1 +1,1 @@
-print(1.01 ** 365)
+print(int(False))
