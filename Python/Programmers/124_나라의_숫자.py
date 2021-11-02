@@ -1,5 +1,5 @@
 def solution(n):
-    rule = [0, 1, 2, 4]
+    rule = [4, 1, 2, 4]
     # [0, 1, 2]
     answer = ''
     end = 0 
@@ -9,9 +9,14 @@ def solution(n):
         if end >= n:
             break
         cnt += 1
-    while cnt >= 0:
-        r = n//(3**cnt)
-        answer += str(rule[r])
+    tp = 0
+    while tp < cnt:
+        r = n % 3
+        answer = answer + str(rule[r])
+        if not r:
+            n -= 3
+        else:
+            n -= r
         n = n - (r * 3**cnt)
         cnt -= 1
     return answer
