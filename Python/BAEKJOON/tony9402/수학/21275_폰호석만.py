@@ -1,6 +1,5 @@
 import sys
 sys.stdin = open("21275in.txt",'r')
-
 li = list(sys.stdin.readline().split())
 a = []
 if li[0].isalpha():
