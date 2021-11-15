@@ -9,4 +9,4 @@ for cnt in range(24):
         p += A
     else:
         p = max(0, p-C)
-print(w)     
+print(w)

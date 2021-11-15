@@ -1,2 +1,1 @@
-a = [1,2,3,4]
-print(" ".join(map(str,a)))
+print(int(63**(1/2)))
