@@ -1,1 +1,4 @@
-print(int(63**(1/2)))
+import math
+
+print(math.ceil(2.0))
+print(math.ceil(2.1))
