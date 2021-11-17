@@ -1,27 +1,8 @@
 def solution(n):
-    rule = [4, 1, 2, 4]
-    # [0, 1, 2]
+    n -= 1
     answer = ''
-    end = 0 
-    cnt = 0
-    while True:
-        end += 3**(cnt+1)
-        if end >= n:
-            break
-        cnt += 1
-    tp = 0
-    while tp < cnt:
-        r = n % 3
-        answer = answer + str(rule[r])
-        if not r:
-            n -= 3
-        else:
-            n -= r
-        n = n - (r * 3**cnt)
-        cnt -= 1
+
     return answer
-
-
 print(solution(1)) # 1
 print(solution(2)) # 2
 print(solution(3)) # 4
