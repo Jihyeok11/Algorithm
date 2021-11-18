@@ -1,16 +1,15 @@
+import math
 def solution(n):
-    num = [1, 2, 4]
+    num = [4, 1, 2]
     answer = ''
     li = []
-    if n <= 3:
-        answer = num[n-1]
-    else:
-        tp = num[(n % 3) - 1]
-        while n:
-            li.append(n % 3)
-            n //= 3
-        for i in range(len(li)-1, -1, -1):
-            answer += str(num[li[i]-1])
+    cnt = 1
+    while n > 0:
+        tp = 3 ** cnt
+        li.append(num[math.ceil(((n % tp) / tp)*3)])
+        n -= tp
+        cnt += 1
+    print(li)
             
     return answer
 print(solution(1)) # 1
