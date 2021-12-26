@@ -7,7 +7,7 @@ def zmaze(m,y,x):
     global result
     if y==a and x == b:
         print(result)
-        exit(0)
+        exit()
 
     if m==1:
         result += 1
