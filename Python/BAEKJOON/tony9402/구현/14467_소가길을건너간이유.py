@@ -11,8 +11,7 @@ for _ in range(int(sys.stdin.readline())):
         if not cows[a] and b:
             cows[a] = b
             answer += 1
-        elif not cows[a] and b:
+        elif cows[a] and not b:
             cows[a] = b
             answer += 1
 print(answer)
-print(cows)
